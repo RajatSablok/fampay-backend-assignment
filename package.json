@@ -1,0 +1,67 @@
+{
+	"name": "fampay-backend-assignment",
+	"description": "Fampay Backend Assignment",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">= 18.5.0"
+	},
+	"author": "Rajat Sablok",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"postinstall": "husky install",
+		"clean": "./node_modules/.bin/rimraf coverage build tmp",
+		"build": "tsc -p tsconfig.release.json",
+		"start": "node -r dotenv-safe/config build/src/index.js",
+		"watch:ts": "tsc -w -p tsconfig.release.json",
+		"watch:node": "nodemon -r dotenv-safe/config --delay 100ms build/src/index.js",
+		"start:watch": "concurrently -r \"npm run watch:ts\" \"npm run watch:node\"",
+		"lint": "eslint ./src --ext .ts,.js --fix"
+	},
+	"devDependencies": {
+		"@types/async": "3.2.15",
+		"@types/express": "4.17.13",
+		"@types/node": "18.7.16",
+		"@types/qs": "6.9.7",
+		"@typescript-eslint/eslint-plugin": "5.40.1",
+		"@typescript-eslint/parser": "5.40.1",
+		"concurrently": "7.4.0",
+		"dotenv-safe": "8.2.0",
+		"eslint": "8.23.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-prettier": "4.2.1",
+		"eslint-plugin-sonarjs": "0.15.0",
+		"husky": "^8.0.1",
+		"lint-staged": "13.0.3",
+		"nodemon": "2.0.19",
+		"prettier": "2.7.1",
+		"rimraf": "3.0.2",
+		"tsutils": "3.21.0"
+	},
+	"dependencies": {
+		"@awaitjs/express": "0.9.0",
+		"@types/compression": "^1.7.2",
+		"@types/connect-timeout": "^0.0.36",
+		"@types/cors": "^2.8.13",
+		"@yellowclass/yc-utils": "1.0.0",
+		"async": "3.2.4",
+		"axios": "^1.3.2",
+		"body-parser": "1.20.0",
+		"compression": "1.7.4",
+		"connect-timeout": "^1.9.0",
+		"cookie-parser": "1.4.6",
+		"cors": "2.8.5",
+		"express": "4.18.1",
+		"express-http-context": "^1.2.4",
+		"mongoose": "^6.9.1",
+		"typescript": "4.8.3",
+		"waait": "^1.0.5"
+	},
+	"config": {
+		"mongodbMemoryServer": {
+			"version": "latest"
+		}
+	},
+	"packageManager": "yarn@3.2.1"
+}

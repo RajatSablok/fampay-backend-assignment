@@ -1,0 +1,30 @@
+version: '3.4'
+services:
+  fampay-backend-assigment:
+    depends_on:
+      - redis-cache
+      - mongo-db
+    environment:
+      REDIS_HOST: redis-cache
+      DB_URI: mongodb://mongo-db:27017/yc_local
+    command: sh -c "node -r dotenv-safe/config build/src/index.js"
+    image: fampay-backend-assigment
+    ports:
+      - 9099:9099
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: fampay-backend-assigment
+  mongo-db:
+    image: mongo:5.0.9-focal
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./initMongo:/docker-entrypoint-initdb.d
+  redis-cache:
+    image: redis:7.0.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server
