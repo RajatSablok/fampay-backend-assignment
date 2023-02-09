@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { Redis as RedisClient } from 'ioredis';
 
-import { RedisClient } from '../../../../types/commonTypes';
 import { SEARCH_QUERY, YOUTUBE_SEARCH_BASE_URL } from '../../../../utils/constants';
 import { logger } from '../../../../utils/logger';
 import { TYouTubeSearchResponse } from '../types';

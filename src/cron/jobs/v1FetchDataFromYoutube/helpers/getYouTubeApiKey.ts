@@ -1,5 +1,7 @@
 import 'dotenv-safe/config';
-import { RedisClient } from '../../../../types/commonTypes';
+import { Redis as RedisClient } from 'ioredis';
+
+import { YOUTUBE_API_RATE_LIMIT } from '../../../../utils/constants';
 import { logger } from '../../../../utils/logger';
 
 /**
@@ -37,7 +39,7 @@ export const getYouTubeApiKey = async ({
 		const remainingRequests = await redisClient.get(key);
 
 		if (!remainingRequests) {
-			await redisClient.set(key, '100');
+			await redisClient.set(key, YOUTUBE_API_RATE_LIMIT);
 			finalKey = key;
 			break;
 		}
