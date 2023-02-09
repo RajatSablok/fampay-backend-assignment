@@ -13,8 +13,13 @@ export const getVideosFromDb = async ({
 }): Promise<Array<TVideoData | undefined>> => {
 	return VideoDataModel.find(
 		{
-			...(title && { title: new RegExp(title || '', 'i') }),
-			...(description && { description: new RegExp(description || '', 'i') }),
+			...((title || description) && {
+				$text: {
+					$search: `${title || ''} ${description || ''}`,
+					$caseSensitive: false,
+					$diacriticSensitive: true,
+				},
+			}),
 		},
 		{
 			title: 1,
