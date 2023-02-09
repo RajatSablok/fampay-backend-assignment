@@ -2,6 +2,8 @@ import Redis, { Redis as RedisClient } from 'ioredis';
 
 import { logger } from './logger';
 
+const redis: Record<string, unknown> = {};
+
 const redisConnection = ({
 	redisHost,
 	redisPort,
@@ -20,12 +22,12 @@ const redisConnection = ({
 	return client;
 };
 
-const getRedisConnection = (): RedisClient => {
-	return redisConnection({
+const getRedisConnection = (): void => {
+	redis.client = redisConnection({
 		redisHost: process.env.REDIS_HOST!,
 		redisPort: parseInt(process.env.REDIS_PORT!),
 		redisDB: parseInt(process.env.REDIS_DATABASE!),
 	});
 };
 
-export { getRedisConnection };
+export { getRedisConnection, redis };

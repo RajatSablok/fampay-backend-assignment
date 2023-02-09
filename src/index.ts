@@ -1,8 +1,8 @@
-import 'dotenv-safe/config';
 import { upgradeResponse } from '@yellowclass/yc-utils/dist/src/expressHelpers';
 import compression from 'compression';
 import timeout from 'connect-timeout';
 import cors from 'cors';
+import 'dotenv-safe/config';
 import Express from 'express';
 import httpContext from 'express-http-context';
 
@@ -20,8 +20,6 @@ initLogger({ logFile: './logs/express-app.log' });
 const app = Express();
 createOrReturnDBConnection({ dbUri: process.env.DB_URI! });
 
-const redisClient = getRedisConnection();
-
 app.use(timeout('60s'));
 app.use(cors());
 app.use(compression());
@@ -29,10 +27,7 @@ app.use(Express.json({ limit: '50mb' }));
 app.use(Express.urlencoded({ limit: '50mb' }));
 app.use(httpContext.middleware);
 
-app.use((req, res, next) => {
-	req.redisClient = redisClient;
-	next();
-});
+getRedisConnection();
 
 upgradeResponse(app).use(router);
 
