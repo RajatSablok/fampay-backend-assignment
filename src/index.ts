@@ -7,6 +7,7 @@ import Express from 'express';
 import httpContext from 'express-http-context';
 
 import { config as serverConfig } from './config';
+import { fetchYouTubeDataCronJob } from './cron/jobs/v1FetchDataFromYoutube';
 import { router } from './router';
 import { initLogger, logger } from './utils/logger';
 import { createOrReturnDBConnection } from './utils/mongo';
@@ -34,6 +35,8 @@ app.use((req, res, next) => {
 });
 
 upgradeResponse(app).use(router);
+
+fetchYouTubeDataCronJob.start();
 
 // eslint-disable-next-line func-names, no-unused-vars, consistent-return, @typescript-eslint/no-unused-vars
 app.use((error, _, res, next) => {

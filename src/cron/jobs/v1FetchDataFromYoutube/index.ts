@@ -1,4 +1,7 @@
+import { CronJob } from 'cron';
+
 import { TVideoData } from '../../../models/videoData.model';
+import { FETCH_YOUTUBE_DATA_CRON_CONFIG } from '../../../utils/constants';
 import { logger } from '../../../utils/logger';
 import { createOrReturnDBConnection } from '../../../utils/mongo';
 import { getRedisConnection } from '../../../utils/redis';
@@ -8,13 +11,14 @@ import { saveVideoDataToDb } from './helpers/saveVideoDataToDb';
 
 const v1FetchDataFromYoutube = async () => {
 	try {
+		logger.info(`v1FetchDataFromYoutube started at ${new Date()}`);
 		await createOrReturnDBConnection({ dbUri: process.env.DB_URI! });
 		const redisClient = getRedisConnection();
 
 		const videos = await fetchVideosFromYouTube({ redisClient });
 
 		if (!videos || !videos.items.length) {
-			return false;
+			return;
 		}
 
 		const allVideoData: Array<TVideoData> = videos.items.map((video) => {
@@ -34,19 +38,16 @@ const v1FetchDataFromYoutube = async () => {
 
 		await saveVideoDataToDb(allVideoData);
 
-		return true;
+		return;
 	} catch (error) {
 		logger.error({ error, prefixMsg: `An error occurred in v1FetchDataFromYoutube` });
-		return false;
 	}
 };
 
-v1FetchDataFromYoutube()
-	.then(() => {
-		logger.info(`v1FetchDataFromYoutube completed successfully`);
-		process.exit(0);
-	})
-	.catch((error) => {
-		logger.error({ error, prefixMsg: `An error occurred in v1FetchDataFromYoutube` });
-		process.exit(1);
-	});
+export const fetchYouTubeDataCronJob = new CronJob(
+	FETCH_YOUTUBE_DATA_CRON_CONFIG,
+	v1FetchDataFromYoutube,
+	null,
+	true,
+	'Asia/Kolkata',
+);
