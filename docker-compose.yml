@@ -5,16 +5,20 @@ services:
       - redis-cache
       - mongo-db
     environment:
+      NODE_ENV: development
+      PORT: 3000
+      YOUTUBE_API_KEYS: ${YOUTUBE_API_KEY_1},${YOUTUBE_API_KEY_2},${YOUTUBE_API_KEY_3}
+      REDIS_PORT: 6379
+      REDIS_DATABASE: 0
       REDIS_HOST: redis-cache
-      DB_URI: mongodb://mongo-db:27017/yc_local
+      DB_URI: mongodb://mongo-db:27017/local_db
     command: sh -c "node -r dotenv-safe/config build/src/index.js"
     image: fampay-backend-assigment
     ports:
-      - 9099:9099
+      - 3000:3000
     build:
       context: .
       dockerfile: Dockerfile
-      target: fampay-backend-assigment
   mongo-db:
     image: mongo:5.0.9-focal
     restart: always
