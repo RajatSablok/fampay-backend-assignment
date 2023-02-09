@@ -1,13 +1,10 @@
-import { TVideoData, VideoDataModel } from '../../../models/videoData.model';
+import { TVideoData } from '../../../models/videoData.model';
 import { logger } from '../../../utils/logger';
 import { createOrReturnDBConnection } from '../../../utils/mongo';
 import { getRedisConnection } from '../../../utils/redis';
 
 import { fetchVideosFromYouTube } from './helpers/fetchVideosFromYouTube';
-
-const saveVideoDataToDb = (videos: Array<TVideoData>) => {
-	return VideoDataModel.insertMany(videos, { ordered: false, rawResult: true });
-};
+import { saveVideoDataToDb } from './helpers/saveVideoDataToDb';
 
 const v1FetchDataFromYoutube = async () => {
 	try {
@@ -35,19 +32,21 @@ const v1FetchDataFromYoutube = async () => {
 			};
 		});
 
-		logger.debug(`allVideoData: ${JSON.stringify(allVideoData)}`);
-
-		const res = await saveVideoDataToDb(allVideoData);
-
-		logger.debug(`res: ${JSON.stringify(res)}`);
+		await saveVideoDataToDb(allVideoData);
 
 		return true;
 	} catch (error) {
-		logger.error({ error, prefixMsg: `An error occurred in v1SampleCron` });
+		logger.error({ error, prefixMsg: `An error occurred in v1FetchDataFromYoutube` });
 		return false;
 	}
 };
 
-v1FetchDataFromYoutube().catch((error) => {
-	logger.error({ error, prefixMsg: `An error occurred in v1SampleCron` });
-});
+v1FetchDataFromYoutube()
+	.then(() => {
+		logger.info(`v1FetchDataFromYoutube completed successfully`);
+		process.exit(0);
+	})
+	.catch((error) => {
+		logger.error({ error, prefixMsg: `An error occurred in v1FetchDataFromYoutube` });
+		process.exit(1);
+	});
