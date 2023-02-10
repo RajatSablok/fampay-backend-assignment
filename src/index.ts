@@ -1,4 +1,4 @@
-import { upgradeResponse } from '@yellowclass/yc-utils/dist/src/expressHelpers';
+import { upgradeResponse } from '@rajatsablok/node-utils/dist/src/expressHelpers';
 import compression from 'compression';
 import timeout from 'connect-timeout';
 import cors from 'cors';

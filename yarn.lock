@@ -1031,6 +1031,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rajatsablok/node-utils@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@rajatsablok/node-utils@npm:1.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40rajatsablok%2Fnode-utils%2F1.0.0%2F8e39ba1b227f62c6dd1c6f2229211265ebaae857"
+  dependencies:
+    "@awaitjs/express": 0.6.3
+    abort-controller: ^3.0.0
+    amqp-connection-manager: ^3.2.2
+    amqplib: ^0.8.0
+    aws-sdk: ^2.983.0
+    date-fns: ^2.16.1
+    express: ^4.17.1
+    express-http-context: ^1.2.4
+    graphql: ^15.5.1
+    ioredis: ^5.1.0
+    isomorphic-fetch: ^3.0.0
+    lodash: ^4.17.21
+    mongoose: ^6.4.1
+    query-string: ^6.13.7
+    ramda: ^0.28.0
+    uuid: ^8.3.2
+    winston: 3.8.1
+    yup: 0.32.11
+  checksum: c288a0c7287d86d7680a22e351cc293cbe0ec5e2dbdd105dd61112fea05717bfbc9d387101703b7711d118d30748bc58f8cf077a50fd4d53df0d0635eb9d3dcf
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -2910,6 +2936,7 @@ __metadata:
   resolution: "fampay-backend-assignment@workspace:."
   dependencies:
     "@awaitjs/express": 0.9.0
+    "@rajatsablok/node-utils": 1.0.0
     "@types/async": 3.2.15
     "@types/compression": ^1.7.2
     "@types/connect-timeout": ^0.0.36

@@ -41,11 +41,11 @@
 	},
 	"dependencies": {
 		"@awaitjs/express": "0.9.0",
+		"@rajatsablok/node-utils": "1.0.0",
 		"@types/compression": "^1.7.2",
 		"@types/connect-timeout": "^0.0.36",
 		"@types/cors": "^2.8.13",
 		"@types/cron": "^2.0.0",
-		"@yellowclass/yc-utils": "1.0.0",
 		"async": "3.2.4",
 		"axios": "^1.3.2",
 		"body-parser": "1.20.0",
