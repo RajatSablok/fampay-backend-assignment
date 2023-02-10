@@ -14,7 +14,7 @@ import { logger } from '../../../../utils/logger';
  */
 
 /**
- * Gets a valid YouTube API key (logic is explained above)
+ * @description Gets a valid YouTube API key (logic is explained above)
  * @param redisClient Redis client
  * @param skipKeys Array of keys that have already been tried
  * @returns YouTube API key or undefined if all keys have been exhausted

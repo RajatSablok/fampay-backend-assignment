@@ -10,6 +10,9 @@ import { redis } from '../../../utils/redis';
 import { fetchVideosFromYouTube } from './helpers/fetchVideosFromYouTube';
 import { saveVideoDataToDb } from './helpers/saveVideoDataToDb';
 
+/**
+ * @description Fetches data from YouTube and saves it to the database
+ */
 const v1FetchDataFromYoutube = async () => {
 	try {
 		logger.info(`v1FetchDataFromYoutube started at ${new Date()}`);
@@ -44,6 +47,10 @@ const v1FetchDataFromYoutube = async () => {
 	}
 };
 
+/**
+ * @description Cron job to fetch data from YouTube and save it to the database periodically
+ * @see https://www.npmjs.com/package/cron
+ */
 export const fetchYouTubeDataCronJob = new CronJob(
 	FETCH_YOUTUBE_DATA_CRON_CONFIG,
 	v1FetchDataFromYoutube,

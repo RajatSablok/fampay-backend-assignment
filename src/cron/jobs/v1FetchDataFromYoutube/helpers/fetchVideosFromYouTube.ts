@@ -36,7 +36,7 @@ export const fetchVideosFromYouTube = async ({
 		keysTried.push(youtubeApiKey);
 
 		const now = new Date();
-		// publishedAfter should be YOUTUBE_API_HIT_FREQUENCY_IN_SECONDS seconds before now in the format of 2021-01-01T00:00:00Z
+		// PublishedAfter should be YOUTUBE_API_HIT_FREQUENCY_IN_SECONDS seconds before the current time in the format of 2021-01-01T00:00:00Z
 		const publishedAfter = new Date(now.getTime() - YOUTUBE_API_HIT_FREQUENCY_IN_SECONDS * 1000)
 			.toISOString()
 			.replace(/\.\d{3}Z$/, 'Z');

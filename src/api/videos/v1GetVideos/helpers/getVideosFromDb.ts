@@ -1,5 +1,13 @@
 import { TVideoData, VideoDataModel } from '../../../../models/videoData.model';
 
+/**
+ * @description Get paginated video data from the database (either all or filtered by title or description)
+ * @param limit Number of videos to be returned
+ * @param page Page number
+ * @param description Description to be used for filtering
+ * @param title Title to be used for filtering
+ * @returns Promise<Array<TVideoData | undefined> | null>
+ */
 export const getVideosFromDb = async ({
 	title,
 	description,
