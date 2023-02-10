@@ -27,7 +27,8 @@
 1. Choice of tech stack
 Since we were free to choose our tech stack, I went ahead with the one that I am most comfortable with. NodeJS makes it really easy to setup a backend application. It allows for building scalable network applications. With its fast performance, it makes it an ideal choice for building high-performance backend applications.\
 MongoDB is a widely used NoSQL database that is flexible, scalable, and provides high performance. It's a great fit for building applications that require a lot of data manipulation, as it allows for easy storage and retrieval of data in a variety of forms.\
-The combination of Node.js and TypeScript provides a fast and stable runtime environment with improved type safety, while Express.js, MongoDB, Redis, and Docker provide the necessary tools to build and deploy robust applications.
+The combination of Node.js and TypeScript provides a fast and stable runtime environment with improved type safety, while Express.js, MongoDB, Redis, and Docker provide the necessary tools to build and deploy robust applications.\
+To maintain code quality and consistency, I utilized ESLint with strict rules configured to enforce best coding practices and ensure adherence to project-specific style guidelines. These tools and technologies allowed me to build a stable, efficient, and scalable backend solution.
 2. Cron
 The cron is currently running on the server. If deployed like this, they will be running in the same container. This is a very bad design since the cron will always consume a lot of memory, so even if we don't necessarily have to scale our APIs, we will have to scale the server.
 A better thing to do would be run our APIs on one server, and crons on another. This could be done by eliminating the `cron` packafge that I used and using something like `crontab` to manage our cron processes.
