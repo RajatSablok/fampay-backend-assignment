@@ -47,16 +47,29 @@ I will not go ahead with this archioture in production since calling a function 
 1. git clone https://github.com/RajatSablok/fampay-backend-assignment
 2. cd fampay-backend-assignment
 ```
+
 ### Running with docker:
-```
+
 Update the value of YOUTUBE_API_KEYS in docker-compose to actual API keys (csv) 
+```
 docker compose up
 ```
+
 ### Running manually with YARN
-```
+
 Create .env file by referencing .env.example
-yarn build
-yarn install
-yarn start
 ```
+yarn build && yarn install && yarn start
+```
+
 Port 3000 is all yours now :))
+
+---------
+```javascript
+
+if (youEnjoyed) {
+    hireMe();
+}
+
+```
+-----------
