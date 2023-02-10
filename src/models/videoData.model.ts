@@ -50,6 +50,13 @@ const videoDataSchema = new Schema<TVideoData>(
 	{ timestamps: true },
 );
 
+videoDataSchema.index({ youtubeVideoId: 1 }, { unique: true }); // To ensure that same video is not inserted twice
+videoDataSchema.index({
+	title: 'text',
+	description: 'text',
+}); // To enable full text search on title and description
+videoDataSchema.index({ publishedAt: -1 }); // To sort by publishedAt in descending order
+
 const VideoDataModel = model('VideoData', videoDataSchema);
 
 export { TVideoData, TRawVideoData, VideoDataModel };
