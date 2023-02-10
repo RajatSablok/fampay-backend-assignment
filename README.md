@@ -34,18 +34,19 @@ The combination of Node.js and TypeScript provides a fast and stable runtime env
 To maintain code quality and consistency, I utilized ESLint with strict rules configured to enforce best coding practices and ensure adherence to project-specific style guidelines. These tools and technologies allowed me to build a stable, efficient, and scalable backend solution.
 2. **Cron:**\
 The cron is currently running on the server. If deployed like this, they will be running in the same container. This is a very bad design since the cron will always consume a lot of memory, so even if we don't necessarily have to scale our APIs, we will have to scale the server.
-A better thing to do would be run our APIs on one server, and crons on another. This could be done by eliminating the `cron` packafge that I used and using something like `crontab` to manage our cron processes.
+A better thing to do would be run our APIs on one server, and crons on another. This could be done by eliminating the `cron` package that I used and using something like `crontab` to manage our cron processes.
 3. **Using the same API for both fetching all data and search:**\
-Even though it was mentioned that we have to create 2 different APIs, I believe that they server the same purpose -- to return video data. So if the search params (either title or description) are sent, it'll search and return, otherwise it'll just return the paginated response. Also, the response is always paginated so as to not put too much load on the server or the DB. 
+Even though it was mentioned that we have to create 2 different APIs, I believe that they serve the same purpose -- to return video data. So if the search params (either title or description) are sent, it'll search and return, otherwise it'll just return the paginated response. Also, the response is always paginated so as to not put too much load on the server or the DB. 
 4. **YouTube API Key Rotation**\
 The current key rotation works like this: 
 	1. Before fetching the data from YouTube, we pick up the API keys from the environment 
-	2. For each of the keys, we see how many times they have been used (I am maintaining a counter for each key)
+	2. For each of the keys, we see how many times they have been used (I am maintaining a counter for each key on Redis)
 	3. If the key is not found on Redis, that means it hasn't been used till now. So I set it to the actual API quota.
 	4. If the key's remaining usage is not 0, we select it and decrement it by 0
-	5. Apart from this, if any API still fails (could be if the counter is not correct), there is a fallback to recursively call our parent function `fetchDataFromYoutube` with information about the failed keys, so that we do not pick it up from redis.\
+	5. Apart from this, if any API still fails (could be if the counter is not correct), there is a fallback to recursively call our parent function `fetchDataFromYoutube` with information about the failed keys, so that we do not pick it up from Redis.\
 I believe that this is a pretty good architecture because we are not relying entirely on Redis and we have a fallback in place that will get us the next possible key.\
-I will not go ahead with this archioture in production since calling a function (that does network calls) recursively should be avoided at all costs. But since this was a small task, I'm pretty proud of the fallback in place.
+Apart from this, if the API rate limiting is per day, we will have to reset the values in Redis using a cron that runs every day. Or if the rate limits are for different durations, we can always use a different data structure for storing the remaining usage of each key. But the algorithm remains are same.\
+I will probably not go ahead with this architecture in production since calling a function (that does network calls) recursively should be avoided at all costs. But since this was a small task, I'm pretty proud of the fallback in place.
 
 ## Running the project:
 ```
@@ -67,7 +68,7 @@ Create .env file by referencing .env.example
 yarn build && yarn install && yarn start
 ```
 
-Port 3000 is all yours now :))
+Feel free to test the API on the port you mentioned in the environment. 
 
 ---------
 ```javascript
