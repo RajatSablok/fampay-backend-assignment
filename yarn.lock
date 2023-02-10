@@ -1031,9 +1031,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rajatsablok/node-utils@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@rajatsablok/node-utils@npm:1.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40rajatsablok%2Fnode-utils%2F1.0.0%2F8e39ba1b227f62c6dd1c6f2229211265ebaae857"
+"@rajatsablok/node-utils@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@rajatsablok/node-utils@npm:1.0.1::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40rajatsablok%2Fnode-utils%2F1.0.1%2F9e63c377c0414bdc8ba48a599eedde049fa94a8f"
   dependencies:
     "@awaitjs/express": 0.6.3
     abort-controller: ^3.0.0
@@ -1053,7 +1053,7 @@ __metadata:
     uuid: ^8.3.2
     winston: 3.8.1
     yup: 0.32.11
-  checksum: c288a0c7287d86d7680a22e351cc293cbe0ec5e2dbdd105dd61112fea05717bfbc9d387101703b7711d118d30748bc58f8cf077a50fd4d53df0d0635eb9d3dcf
+  checksum: e6ff91243316b77a00953ec1504140a951209cbae17c457a187f991e904b6e0f51548b8908f002bc93f7c7d8d58e77996ee33c0aa5e131264bc11b2a9e337507
   languageName: node
   linkType: hard
 
@@ -1391,32 +1391,6 @@ __metadata:
     "@typescript-eslint/types": 5.40.1
     eslint-visitor-keys: ^3.3.0
   checksum: b5dbf1e484ba2832ca1883ee9cf7da5967f70aa5624f3fb67f13c3be90a3770b0bb96e64ccfb0c31b5d8f80794b5727e14b6c0d8c5184634a686f0ea6e798772
-  languageName: node
-  linkType: hard
-
-"@yellowclass/yc-utils@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@yellowclass/yc-utils@npm:1.0.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40yellowclass%2Fyc-utils%2F1.0.0%2Ffc81d1f79f19a73ee18b67e61f3413995febfbbc"
-  dependencies:
-    "@awaitjs/express": 0.6.3
-    abort-controller: ^3.0.0
-    amqp-connection-manager: ^3.2.2
-    amqplib: ^0.8.0
-    aws-sdk: ^2.983.0
-    date-fns: ^2.16.1
-    express: ^4.17.1
-    express-http-context: ^1.2.4
-    graphql: ^15.5.1
-    ioredis: ^5.1.0
-    isomorphic-fetch: ^3.0.0
-    lodash: ^4.17.21
-    mongoose: ^6.4.1
-    query-string: ^6.13.7
-    ramda: ^0.28.0
-    uuid: ^8.3.2
-    winston: 3.8.1
-    yup: 0.32.11
-  checksum: 8f0bb6892d68e573a6e6e32c0dddf00bfd01637673a91dd403e96e7216b1934c460eee9df568b062cb191cfb03905ee927e6dcd859395c1e7a253384f028bdc4
   languageName: node
   linkType: hard
 
@@ -2936,7 +2910,7 @@ __metadata:
   resolution: "fampay-backend-assignment@workspace:."
   dependencies:
     "@awaitjs/express": 0.9.0
-    "@rajatsablok/node-utils": 1.0.0
+    "@rajatsablok/node-utils": 1.0.1
     "@types/async": 3.2.15
     "@types/compression": ^1.7.2
     "@types/connect-timeout": ^0.0.36
@@ -2947,7 +2921,6 @@ __metadata:
     "@types/qs": 6.9.7
     "@typescript-eslint/eslint-plugin": 5.40.1
     "@typescript-eslint/parser": 5.40.1
-    "@yellowclass/yc-utils": 1.0.0
     async: 3.2.4
     axios: ^1.3.2
     body-parser: 1.20.0

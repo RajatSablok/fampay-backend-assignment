@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"@awaitjs/express": "0.9.0",
-		"@rajatsablok/node-utils": "1.0.0",
+		"@rajatsablok/node-utils": "1.0.1",
 		"@types/compression": "^1.7.2",
 		"@types/connect-timeout": "^0.0.36",
 		"@types/cors": "^2.8.13",
