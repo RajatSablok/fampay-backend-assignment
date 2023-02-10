@@ -24,17 +24,17 @@
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
 ## Reasoning behind some of the architechtural decisions:
-1. Choice of tech stack
+1. **Choice of tech stack:**\
 Since we were free to choose our tech stack, I went ahead with the one that I am most comfortable with. NodeJS makes it really easy to setup a backend application. It allows for building scalable network applications. With its fast performance, it makes it an ideal choice for building high-performance backend applications.\
 MongoDB is a widely used NoSQL database that is flexible, scalable, and provides high performance. It's a great fit for building applications that require a lot of data manipulation, as it allows for easy storage and retrieval of data in a variety of forms.\
 The combination of Node.js and TypeScript provides a fast and stable runtime environment with improved type safety, while Express.js, MongoDB, Redis, and Docker provide the necessary tools to build and deploy robust applications.\
 To maintain code quality and consistency, I utilized ESLint with strict rules configured to enforce best coding practices and ensure adherence to project-specific style guidelines. These tools and technologies allowed me to build a stable, efficient, and scalable backend solution.
-2. Cron
+2. **Cron:**\
 The cron is currently running on the server. If deployed like this, they will be running in the same container. This is a very bad design since the cron will always consume a lot of memory, so even if we don't necessarily have to scale our APIs, we will have to scale the server.
 A better thing to do would be run our APIs on one server, and crons on another. This could be done by eliminating the `cron` packafge that I used and using something like `crontab` to manage our cron processes.
-3. Using the same API for both fetching all data and search:
+3. **Using the same API for both fetching all data and search:**\
 Even though it was mentioned that we have to create 2 different APIs, I believe that they server the same purpose -- to return video data. So if the search params (either title or description) are sent, it'll search and return, otherwise it'll just return the paginated response. Also, the response is always paginated so as to not put too much load on the server or the DB. 
-4. YouTube API Key Rotation
+4. **YouTube API Key Rotation**\
 The current key rotation works like this: 
 	1. Before fetching the data from YouTube, we pick up the API keys from the environment 
 	2. For each of the keys, we see how many times they have been used (I am maintaining a counter for each key)
