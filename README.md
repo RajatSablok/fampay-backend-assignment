@@ -14,6 +14,9 @@
 1. API key rotator to pick up the next API key in case rate limit of any key has been exhausted
 2. Flexible search API: A video with title `How to make tea?` will match for the search query `tea how`. The same also works with description.
 
+
+[![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=postman)](https://documenter.getpostman.com/view/8339014/2s935soMTr) 
+
 ## Tools and technologies used:
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
