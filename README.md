@@ -1,4 +1,4 @@
-# Fampay Backend Assignment
+# FamPay Backend Assignment
 
 ## Basic features:
 
